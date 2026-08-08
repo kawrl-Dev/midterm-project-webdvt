@@ -9,7 +9,7 @@ function NavigationBar() {
   return (
     <header>
       <Container fluid>
-        <Navbar expand="lg" sticky="top" bg="body-tertiary" className="rounded-4 mt-2">
+        <Navbar expand="lg" fixed="top" bg="body-tertiary" className="rounded-4 m-3">
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
               <img
