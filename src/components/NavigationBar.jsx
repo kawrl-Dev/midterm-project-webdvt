@@ -9,7 +9,7 @@ function NavigationBar() {
   return (
     <header>
       <Container fluid>
-        <Navbar expand="lg" fixed="top" bg="body-tertiary" className="rounded-4 m-3">
+        <Navbar expand="lg" fixed="top" bg="body-tertiary" className="rounded-4 m-2 customNavbar">
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
               <img
@@ -19,7 +19,7 @@ function NavigationBar() {
                 width={40}
                 height={40}
               />
-              <span className="text-secondary myBrand">Personal Budget Tracker</span>
+              <span className="myBrand">Personal Budget Tracker</span>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navigationBar" />
             <Navbar.Collapse id="navigationBar">
