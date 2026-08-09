@@ -4,6 +4,7 @@ import WebsiteFooter from './components/WebsiteFooter.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/global.css';
 import Testing from './pages/Testing.jsx';
 export default function App() {
   return (
