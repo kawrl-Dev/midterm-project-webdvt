@@ -21,9 +21,9 @@ function Dashboard() {
             {transactions.length === 0 ? (
                 <>
                     <p className="text-muted text-center pt-4">No transactions yet. Add one to get started.</p>
-                    <Button variant="primary" href="/add-transaction" className="d-block mt-3 w-25 mx-auto align-items-center gap-2">
+                    <Button variant="primary" href="/add-transaction" className="d-block mt-3 w-75 mx-auto align-items-center gap-2">
                         <CiCirclePlus className="me-2" size={30} />
-                        <span>Add Transaction</span>
+                        <span className="button-label">Add Transaction</span>
                     </Button>
                 </>                
             ) : (
