@@ -1,176 +1,125 @@
-# midterm-project-webdevt
+# 💸 Personal Budget Tracker 💸
 
-A modern React application with Progressive Web App (PWA) capabilities built with Vite.
+A multi-page **Personal Budget Tracker** built with **React**, **React Router**, and **React-Bootstrap**. Users can log income and expense transactions, categorize them, view spending summaries, and switch between light and dark themes — with the theme choice persisted and applied consistently across the entire app via Context.
 
-## 🚀 Features
+---
 
-- ⚡ **Vite** - Fast build tool and development server
-- ⚛️ **React 18** - Latest React with modern hooks
-- 🎨 **React Bootstrap** - Styling framework
-- 🛣️ **React Router** - Client-side routing
-- 📱 **PWA Ready** - Installable, offline-capable app
-- 🔄 **Auto-updates** - Service worker with auto-update functionality
-- 📊 **Caching Strategy** - Smart caching for better performance
-- 📦 **Additional Packages**: react-icons
+## Requirements
 
-## 📋 Prerequisites
+- Node.js 18+
+- npm (or yarn/pnpm)
 
-- Node.js (v16 or higher)
-- npm or yarn
+---
 
-## 🛠️ Installation
+## Setup & Installation
 
-1. Navigate to the project directory:
+1. **Clone the repository**
    ```bash
-   cd midterm-project-webdevt
+   git clone https://github.com/your-username/midterm-projectwebdvt.git
+   cd midterm-projectwebdvt
    ```
 
-2. Install dependencies:
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-## 🏃‍♂️ Running the Application
-
-### Development Mode
-```bash
-npm run dev
-```
-The app will be available at `http://localhost:5173`
-
-### Production Build
-```bash
-npm run build
-```
-
-### Preview Production Build
-```bash
-npm run preview
-```
-
-## 📱 PWA Features
-
-### Installation
-- **Desktop**: Look for the install icon in the address bar or use the "Install App" button
-- **Mobile**: Use "Add to Home Screen" option in your browser menu
-
-### Offline Support
-This app works offline thanks to service worker caching:
-- Static assets are cached automatically
-- API responses are cached with NetworkFirst strategy
-- Fallback pages for offline scenarios
-
-### Testing PWA Features
-
-1. **Install Prompt Testing**:
+3. **Run the dev server**
    ```bash
-   # Serve the built app locally
+   npm run dev
+   ```
+
+4. **Build for production**
+   ```bash
    npm run build
    npm run preview
    ```
 
-2. **Service Worker Testing**:
-   - Open DevTools → Application → Service Workers
-   - Check if SW is registered and active
+---
 
-3. **Offline Testing**:
-   - Build and serve the app
-   - Open DevTools → Network → check "Offline"
-   - Refresh the page - it should still work
+## Pages
 
-### PWA Asset Replacement
+| Page                  | Route                | 
+|-----------------------|----------------------|
+| Dashboard (Home)      | `/dashboard`         |  
+|Add Transaction        | `/add-transaction`   | 
+| Transaction Detail    | `/transaction/:id`   | 
+| Summary               | `/summary`           | 
+### Dashboard Flow
 
-⚠️ **Important**: Replace the placeholder SVG icons with proper PNG icons:
+1. Lists all logged transactions.
+2. Supports filtering by category and by type (Income / Expense).
+3. Displays the current balance (total income minus total expenses).
+4. Each entry links to its own Transaction Detail page.
 
-1. Replace these files in `public/` folder:
-   - `pwa-192x192.svg` → `pwa-192x192.png`
-   - `pwa-512x512.svg` → `pwa-512x512.png`
-   - `apple-touch-icon.svg` → `apple-touch-icon.png`
-   - `favicon.svg` → `favicon.ico`
+### Add Transaction Flow
 
-2. Use tools like:
-   - [PWA Asset Generator](https://www.pwabuilder.com/)
-   - [Favicon Generator](https://www.favicon-generator.org/)
-   - [App Icon Generator](https://appicon.co/)
+1. A form collects **Description**, **Amount**, and **Date**.
+2. Required fields are validated via Bootstrap's `Form` validation before submission.
+3. On success, a dismissible confirmation alert appears; closing it returns the user to the Dashboard.
 
-### PWA Checklist
+### Transaction Detail Flow
 
-- ✅ Web App Manifest configured
-- ✅ Service Worker registered
-- ✅ HTTPS ready (required for PWA)
-- ✅ Responsive design
-- ⚠️ Replace placeholder icons with real ones
-- ⚠️ Test on actual devices
-- ⚠️ Test offline functionality
+1. Accessed via its own URL (`/transaction/:id`), showing the full details of a single transaction.
+2. Allows editing the transaction's details.
+3. Allows deleting the transaction.
 
-## 📁 Project Structure
+### Summary Flow
 
-```
-midterm-project-webdevt/
-├── public/
-│   ├── pwa-192x192.svg    # Replace with PNG
-│   ├── pwa-512x512.svg    # Replace with PNG
-│   └── apple-touch-icon.svg # Replace with PNG
-├── src/
-│   ├── components/        # Reusable components
-│   ├── pages/            # Page components
-│   ├── hooks/            # Custom React hooks
-│   │   └── usePWA.js      # PWA functionality hook
-│   ├── store/            # State management
-│   ├── utils/            # Utility functions
-│   ├── assets/          # Static assets
-│   ├── App.jsx           # Main App component
-│   └── main.jsx           # Entry point
-├── vite.config.js        # Vite configuration
-└── package.json
-```
-
-## 🎨 Styling
-
-This project uses **React Bootstrap** for styling:
-
-- React Bootstrap components installed
-- Import components: `import { Button, Container } from 'react-bootstrap'`
-- Bootstrap CSS included automatically
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint (if configured)
-
-## 🚀 Deployment
-
-### Vercel
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-### Netlify
-```bash
-npm run build
-# Upload dist/ folder to Netlify
-```
-
-### PWA Deployment Checklist
-- ✅ Build with `npm run build`
-- ✅ Serve over HTTPS
-- ✅ Test service worker registration
-- ✅ Verify manifest.json is accessible
-- ✅ Test install prompt on mobile/desktop
-- ✅ Replace placeholder icons with real ones
-
-## 🎯 Next Steps
-
-1. **Replace PWA Icons**: Replace SVG placeholders with proper PNG icons
-2. **Test PWA Features**: Test installation and offline functionality
-3. **Customize Caching**: Modify caching strategy in vite.config.js
-4. **Add Components**: Start building your app components
-5. **Configure API**: Set up your API endpoints
-6. **Deploy**: Deploy to a PWA-compatible hosting service
+1. Shows a breakdown of spending by category.
+2. Includes the light/dark theme toggle — the choice applies app-wide, not just on this page.
 
 ---
 
-Built using React + Vite + PWA
+## Architecture
+
+- **Routing** — `react-router` defines each page above as its own real route with a distinct URL (no conditionally-rendered "fake" pages).
+- **Theme (Context API)** — `ThemeContext.jsx` manages light/dark mode app-wide via React Context, avoiding prop drilling through every component. The active theme is persisted to `localStorage` and applied via the `data-bs-theme` attribute, with an inline script in `index.html` setting it before first paint to prevent a flash of the wrong theme.
+- **Custom Hook** — a reusable hook handles reading/writing transactions to persistent storage, rather than duplicating that logic in every component that needs it.
+- **Performance Optimization** — at least one component that would otherwise re-render unnecessarily (e.g. the themed wave footer) is optimized to avoid it.
+- **Styling** — `react-bootstrap` for layout/components, with custom CSS (`global.css`, `NavigationBar.css`) layered on top for theme-aware accents.
+
+---
+
+## Project Structure
+
+```
+midterm-project-webdevt/
+│
+├── index.html                     Vite entry HTML; sets initial theme before paint to avoid flash.
+├── package.json
+│
+└── src/
+    │
+    ├── main.jsx                   React app entry point; mounts <App /> in StrictMode.
+    ├── App.jsx                    Route definitions and top-level layout (nav, footer, routed content).
+    │
+    ├── components/
+    │   ├── NavigationBar.jsx      Top navigation with links to Dashboard and Add Transaction.
+    │   ├── WebsiteFooter.jsx      Animated multilayer wave footer; hosts the theme toggle.
+    │   └── ThemeToggle.jsx        Sun/moon button that flips light/dark mode via ThemeContext.
+    │
+    ├── context/
+    │   └── ThemeContext.jsx       Theme Context provider; persists theme to localStorage and
+    │                              derives wave accent colors per theme.
+    │
+    ├── pages/
+    │   ├── Dashboard.jsx          Transaction list, filtering, and current balance.
+    │   ├── AddTransaction.jsx     Form to log a new transaction with validation.
+    │   ├── TransactionDetail.jsx  (planned) Full detail view with edit/delete.
+    │   └── Summary.jsx            (planned) Spending breakdown by category + theme toggle.
+    │
+    └── css/
+        ├── global.css             App-wide base styles.
+        └── NavigationBar.css      Theme-aware nav bar styling.
+```
+
+---
+
+## Planned Features
+
+- [ ] `Transaction Detail` page (`/transaction/:id`) — view, edit, and delete a single transaction
+- [ ] `Summary` page — spending breakdown by category
+- [ ] Custom hook for reading/writing transactions to persistent storage
+- [ ] Category and type (Income/Expense) filtering on the Dashboard
+- [ ] Running balance calculation on the Dashboard
