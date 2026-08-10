@@ -24,7 +24,7 @@ function NavigationBar() {
             <Navbar.Toggle aria-controls="navigationBar" />
             <Navbar.Collapse id="navigationBar">
               <Nav className="ms-auto gap-3" navbarScroll>
-                <Nav.Link as={Link} to="/" className="d-flex align-items-center gap-2">
+                <Nav.Link as={Link} to="/dashboard" className="d-flex align-items-center gap-2">
                   <AiFillDashboard size={30} />
                   <span>Dashboard</span>
                 </Nav.Link>
