@@ -34,7 +34,7 @@ const hexToRgba = (hex, alpha) => {
 // Bootstrap's default dark/light `data-bs-theme` backgrounds.
 const BASE_WAVE_COLOR = {
   dark: '#38bdf8', // light cyan, pops against dark backgrounds
-  light: '#1e3a8a', // deep blue, pops against light backgrounds
+  light: '#4162bd', // deep blue, pops against light backgrounds
 };
  
 export const ThemeProvider = ({ children }) => {
