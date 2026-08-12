@@ -6,14 +6,19 @@
 }
 
 [data-bs-theme="dark"] .myBrand {
-    color: #38bdf8; /* matches your dark wave accent */
+    color: var(--bs-secondary-color); /* matches your dark wave accent */
 }
 
 [data-bs-theme="light"] .myBrand {
-    color: #4162bd; /* matches your light wave accent */
+    color: var(--bs-secondary-color); /* matches your light wave accent */
 }
 
 [data-bs-theme="light"] .customNavbar {
-    background-color: var(--bs-light);
-    border: 1px solid var(--bs-border-color);
+  background-color: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+}
+
+[data-bs-theme="dark"] .customNavbar {
+  background-color: var(--bs-secondary-bg);
+  border: 1px solid var(--bs-border-color);
 }
