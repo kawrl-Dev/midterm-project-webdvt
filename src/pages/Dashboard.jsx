@@ -10,7 +10,7 @@ function Dashboard() {
   return (
     <Container fluid className="p-4">
         <h1 className="fw-bold dashboard-title">Dashboard</h1>
-        <Container fluid className="bg-body-secondary p-2 rounded-4 mb-2 dashboard-header w-75 mx-auto">
+        <Container fluid className="bg-tertiary p-2 rounded-4 mb-2 dashboard-header w-75 mx-auto">
             <h3 className="fw-bold balance-display">
                 Current Balance:{' '}
                 <span className={balance >= 0 ? 'text-success' : 'text-danger'}>

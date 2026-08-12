@@ -1,3 +1,31 @@
+[data-bs-theme="light"] {
+  --bs-body-bg: #F8F3F1;
+  --bs-secondary-bg: #F1E7E3;
+  --bs-tertiary-bg: #EADEDA;
+  --bs-border-color: #DCCFC9;
+
+  --bs-body-color: #3A2E29;        /* main text — warm espresso brown, ~11:1 contrast on body-bg */
+  --bs-secondary-color: #6B5A52;   /* muted/secondary text — warm taupe */
+  --bs-tertiary-color: #8A7A72;    /* faint text, placeholders, disabled */
+  --bs-heading-color: #2D2320;     /* headings — slightly darker for emphasis */
+  --bs-link-color: #A8523B;        /* warm terracotta link color instead of Bootstrap blue */
+  --bs-link-hover-color: #8A3F2C;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1A1A1A;
+  --bs-secondary-bg: #2C2C2C;
+  --bs-tertiary-bg: #3D3D3D;
+  --bs-border-color: #4E4E4E;
+
+  --bs-body-color: #E0E0E0;        /* main text — light gray for readability */
+  --bs-secondary-color: #B0B0B0;   /* muted/secondary text */
+  --bs-tertiary-color: #8A8A8A;    /* faint text, placeholders, disabled */
+  --bs-heading-color: #FFFFFF;     /* headings — white for emphasis */
+  --bs-link-color: #38bdf8;        /* bright cyan link color for contrast */
+  --bs-link-hover-color: #1E90FF;
+}
+
 body {
     transition: background-color 0.6s ease;
 }
