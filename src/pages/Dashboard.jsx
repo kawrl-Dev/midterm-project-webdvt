@@ -1,7 +1,8 @@
-import { Container, Table, Badge, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTransactions } from "../hooks/useTransactions.js";
 import '../css/Dashboard.css';
 import Separator from "../components/Separator.jsx";
+import TransactionCard from "../components/TransactionCard.jsx";
 import { CiCirclePlus } from 'react-icons/ci';
 
 function Dashboard() {
@@ -27,8 +28,14 @@ function Dashboard() {
                     </Button>
                 </>                
             ) : (
-                <Container fluid className="w-75 mx-auto">
-                    {/* Transaction cards will be rendered here */}
+                <Container fluid className="w-max mx-auto pb-3 mt-4">
+                    <Row xs={1} sm={2} md={3} className="g-3">
+                        {transactions.map((transaction) => (
+                            <Col key={transaction.id}>
+                                <TransactionCard transaction={transaction} />
+                            </Col>
+                        ))}
+                    </Row>
                 </Container>
             )}
         </Container>

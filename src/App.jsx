@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/global.css';
 import Dashboard from './pages/Dashboard.jsx';
 import AddTransaction from './pages/AddTransaction.jsx';
+import TransactionDetails from './pages/TransactionDetails.jsx';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               <Route index element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/add-transaction" element={<AddTransaction />} />
+              <Route path="/transaction/:id" element={<TransactionDetails />} />
             </Routes>
           </main>
           <WebsiteFooter/>
