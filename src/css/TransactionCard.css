@@ -1,0 +1,10 @@
+.transaction-card {
+  transition: transform 0.2s ease-in-out;
+  background-color: var(--bs-secondary-bg);
+}
+
+.transaction-card:hover {
+  transform: translateY(-8px);
+  border: 2.24px solid var(--bs-border-color);
+  transition: transform 0.2s ease-in-out, border 0.12s ease-in-out;
+}

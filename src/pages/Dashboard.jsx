@@ -27,32 +27,9 @@ function Dashboard() {
                     </Button>
                 </>                
             ) : (
-                <Table striped bordered hover responsive>
-                <thead>
-                    <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {transactions.map((t) => (
-                    <tr key={t.id}>
-                        <td>{t.date}</td>
-                        <td>{t.description}</td>
-                        <td>{t.category}</td>
-                        <td>
-                        <Badge bg={t.type === 'income' ? 'success' : 'danger'}>
-                            {t.type}
-                        </Badge>
-                        </td>
-                        <td>₱{Number(t.amount).toFixed(2)}</td>
-                    </tr>
-                    ))}
-                </tbody>
-                </Table>
+                <Container fluid className="w-75 mx-auto">
+                    {/* Transaction cards will be rendered here */}
+                </Container>
             )}
         </Container>
     </Container>

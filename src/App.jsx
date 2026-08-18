@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/global.css';
 import Dashboard from './pages/Dashboard.jsx';
 import AddTransaction from './pages/AddTransaction.jsx';
+
 export default function App() {
   return (
     <ThemeProvider>
