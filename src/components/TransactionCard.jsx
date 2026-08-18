@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Badge } from "react-bootstrap";
-import useNavigate from "react-router";
+import { useNavigate } from "react-router";
 import '../css/TransactionCard.css';
 
 function TransactionCard({ transaction }) {
@@ -12,9 +12,9 @@ function TransactionCard({ transaction }) {
     }
 
     return (
-    <Card className="transaction-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
+    <Card className="transaction-card h-100" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
         <Card.Body>
-        <Card.Title>{description}</Card.Title>
+        <Card.Title className="text-truncate">{description}</Card.Title>
         <Card.Text>
             <strong>Date:</strong> {date} <br />
             <strong>Category:</strong> {category} <br />
