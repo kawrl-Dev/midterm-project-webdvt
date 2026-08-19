@@ -15,7 +15,7 @@ A multi-page **Personal Budget Tracker** built with **React**, **React Router**,
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/midterm-projectwebdvt.git
+   git clone https://github.com/kawrl-Dev/-midterm-project-webdvt.git
    cd midterm-projectwebdvt
    ```
 
