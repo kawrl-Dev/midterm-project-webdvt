@@ -1,0 +1,28 @@
+/* Base Card State */
+.transaction-card {
+  background-color: var(--bs-secondary-bg);
+  border: 2px solid transparent; 
+  /* Define all transitions on the base element for smooth in AND out transitions */
+  transition: 
+    transform 0.2s ease-in-out, 
+    border-color 0.12s ease-in-out, 
+    background-color 0.2s ease-in-out;
+}
+
+/* Card Hover State */
+.transaction-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--bs-border-color);
+  background-color: var(--bs-body-bg); /* Use -bg for background tokens */
+}
+
+/* Text Base State */
+.transaction-card-text {
+  color: var(--bs-heading-color);
+  transition: color 0.2s ease-in-out;
+}
+
+/* Text changes color when the entire parent CARD is hovered */
+.transaction-card:hover .transaction-card-text {
+  color: var(--bs-link-hover-color); /* Use -color for text tokens */
+}

@@ -1,11 +1,15 @@
 import { Container } from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar.jsx';
 import WebsiteFooter from './components/WebsiteFooter.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/global.css';
-import Testing from './pages/Testing.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import AddTransaction from './pages/AddTransaction.jsx';
+import TransactionDetails from './pages/TransactionDetails.jsx';
+import Summary from './pages/Summary.jsx';
+
 export default function App() {
   return (
     <ThemeProvider>
@@ -14,7 +18,11 @@ export default function App() {
           <NavigationBar/>
           <main className="flex-grow-1" style={{ paddingTop: '80px', paddingBottom: '20px' }}>
             <Routes>
-              <Route path='/' element={<Testing/>}/>
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/add-transaction" element={<AddTransaction />} />
+              <Route path="/transaction/:id" element={<TransactionDetails />} />
+              <Route path="/summary" element={<Summary />} />
             </Routes>
           </main>
           <WebsiteFooter/>

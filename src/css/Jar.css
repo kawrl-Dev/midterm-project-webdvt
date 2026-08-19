@@ -1,0 +1,83 @@
+.jar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 130px;
+}
+
+.jar-shape {
+  position: relative;
+  width: 120px;
+  height: 180px;
+  background-color: var(--bs-secondary-bg);
+  border: 3px solid var(--bs-border-color);
+  /* mason-jar silhouette: narrow neck/lid on top, wider body below */
+  clip-path: polygon(
+    32% 0%, 68% 0%,
+    68% 9%, 84% 9%,
+    94% 22%, 94% 94%,
+    86% 100%, 14% 100%,
+    6% 94%, 6% 22%,
+    16% 9%, 32% 9%
+  );
+  overflow: hidden;
+  transition: background-color 0.4s ease;
+}
+
+.jar-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+  transition: height 0.8s ease;
+}
+
+.jar-fill-body {
+  position: absolute;
+  top: 10px;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+}
+
+.jar-empty-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--bs-tertiary-color);
+}
+
+.jar-caption {
+  text-align: center;
+  width: 100%;
+}
+
+.jar-label {
+  font-weight: 600;
+  color: var(--bs-heading-color);
+}
+
+.jar-sublabel {
+  font-size: 0.7rem;
+  color: var(--bs-tertiary-color);
+}
+
+.jar-percent {
+  font-size: 0.85rem;
+  color: var(--bs-secondary-color);
+}
+
+.jar-amount {
+  font-size: 0.8rem;
+  color: var(--bs-tertiary-color);
+}
+
+.jar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}

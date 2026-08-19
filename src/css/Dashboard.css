@@ -1,0 +1,52 @@
+/* Dashboard Header Styles */
+[data-bs-theme="light"] .dashboard-header {
+    background-color: var(--bs-tertiary-bg);
+    border: 1.33px solid var(--bs-border-color);
+    transition: color 0.6s ease;
+}
+
+[data-bs-theme="dark"] .dashboard-header {
+    background-color: var(--bs-tertiary-bg);
+    border: 1.33px solid var(--bs-border-color);
+    transition: color 0.6s ease;
+}
+
+/* Dashboard Title Styles */
+.dashboard-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    transition: color 0.6s ease;
+}
+
+[data-bs-theme="dark"] .dashboard-title {
+    color: var(--bs-primary-color);
+}
+
+[data-bs-theme="light"] .dashboard-title {
+    color: var(--bs-primary-color);
+}
+
+/* Balance Display Styles */
+.balance-display {
+    color: var(--bs-secondary-color);
+    font-size: clamp(1.2rem, 2vw, 2.5rem);
+    transition: color 0.6s ease;
+}
+
+/* Button Styles */
+[data-bs-theme="dark"] .btn-primary {
+    background-color: var(--bs-primary-color);
+    border-color: var(--bs-primary-color);
+    transition: color 0.6s ease;
+}
+
+[data-bs-theme="light"] .btn-primary {
+    background-color: var(--bs-secondary-color);
+    border-color: var(--bs-secondary-color);
+    transition: color 0.6s ease;
+}
+
+/* Button Label Styles */
+.button-label {
+    font-size: clamp(0.875rem, 1.5vw, 1.5rem);
+    transition: color 0.6s ease;
+}

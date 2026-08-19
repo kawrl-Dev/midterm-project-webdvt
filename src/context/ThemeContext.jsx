@@ -33,8 +33,8 @@ const hexToRgba = (hex, alpha) => {
 // Base accent color per theme. Chosen to contrast well against
 // Bootstrap's default dark/light `data-bs-theme` backgrounds.
 const BASE_WAVE_COLOR = {
-  dark: '#38bdf8', // light cyan, pops against dark backgrounds
-  light: '#1e3a8a', // deep blue, pops against light backgrounds
+  dark: '#E0E0E0', // light cyan, pops against dark backgrounds
+  light: '#5D5558', // deep blue, pops against light backgrounds
 };
  
 export const ThemeProvider = ({ children }) => {

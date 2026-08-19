@@ -19,13 +19,13 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: 'pwa-192x192.png',
-            sizes: '192x192',
+            src: 'budget-tracker-icon.png',
+            sizes: '1600x1600',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
-            sizes: '512x512',
+            src: 'budget-tracker-icon.png',
+            sizes: '1600x1600',
             type: 'image/png'
           }
         ]

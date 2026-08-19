@@ -1,6 +1,7 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { AiFillDashboard } from 'react-icons/ai';
+import { TbReportAnalyticsFilled } from "react-icons/tb";
 import { CiCirclePlus } from 'react-icons/ci';
 
 import '../css/NavigationBar.css';
@@ -9,7 +10,7 @@ function NavigationBar() {
   return (
     <header>
       <Container fluid>
-        <Navbar expand="lg" fixed="top" bg="body-tertiary" className="rounded-4 m-2 customNavbar">
+        <Navbar expand="lg" fixed="top" bg="bg-tertiary" className="rounded-4 m-2 customNavbar">
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
               <img
@@ -24,13 +25,13 @@ function NavigationBar() {
             <Navbar.Toggle aria-controls="navigationBar" />
             <Navbar.Collapse id="navigationBar">
               <Nav className="ms-auto gap-3" navbarScroll>
-                <Nav.Link as={Link} to="/" className="d-flex align-items-center gap-2">
+                <Nav.Link as={Link} to="/dashboard" className="d-flex align-items-center gap-2">
                   <AiFillDashboard size={30} />
                   <span>Dashboard</span>
                 </Nav.Link>
-                <Nav.Link as={Link} to="/add-transaction" className="d-flex align-items-center gap-2">
-                  <CiCirclePlus size={30} />
-                  <span>Add Transaction</span>
+                <Nav.Link as={Link} to="/summary" className="d-flex align-items-center gap-2">
+                  <TbReportAnalyticsFilled size={30}/>
+                  <span>Summary</span>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
