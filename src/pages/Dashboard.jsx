@@ -1,12 +1,12 @@
-import { useMemo } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { useMemo, useState } from "react";
+import { Container, Row, Col, Button, Offcanvas } from "react-bootstrap";
 import { useTransactions } from "../hooks/useTransactions.js";
 import { useTransactionFilters } from "../hooks/useTransactionFilters.js";
 import '../css/Dashboard.css';
 import Separator from "../components/Separator.jsx";
 import TransactionCard from "../components/TransactionCard.jsx";
 import FilterSidebar from "../components/FilterSidebar.jsx";
-import { CiCirclePlus } from 'react-icons/ci';
+import { CiCirclePlus, CiFilter } from 'react-icons/ci';
 
 function Dashboard() {
   const { transactions, balance } = useTransactions();
@@ -19,9 +19,7 @@ function Dashboard() {
     hasActiveFilters,
   } = useTransactionFilters();
 
-  // useMemo: only recompute the filtered list when transactions or the
-  // filter values actually change — not on every Dashboard render
-  // (e.g. a theme toggle in the footer causing a re-render up the tree).
+  const [showFilters, setShowFilters] = useState(false);
   const filteredTransactions = useMemo(() => {
     return transactions.filter((t) => {
       const matchesCategory = !filterCategory || t.category === filterCategory;
@@ -30,12 +28,45 @@ function Dashboard() {
     });
   }, [transactions, filterCategory, filterType]);
 
+  const filterProps = {
+    filterCategory,
+    filterType,
+    onCategoryChange: setCategory,
+    onTypeChange: setType,
+    onReset: resetFilters,
+    hasActiveFilters,
+  };
+
   return (
     <Container fluid className="p-4">
-        <h1 className="fw-bold dashboard-title">Dashboard</h1>
+        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h1 className="fw-bold dashboard-title mb-0">Dashboard</h1>
 
-        <Row className="g-3">
-            <Col md={3}>
+            {/* Mobile-only filter trigger; hidden entirely at md+ since the
+                sidebar is already visible there. */}
+            <Button
+                variant="outline-secondary"
+                className="d-md-none d-flex align-items-center gap-2"
+                onClick={() => setShowFilters(true)}
+            >
+                <CiFilter size={20} />
+                Filters
+                {hasActiveFilters && <span className="filter-active-dot" aria-label="Filters active" />}
+            </Button>
+        </div>
+
+        {/* Mobile filter panel. Positioned fixed by Bootstrap regardless of
+            where it sits in the tree, so it lives outside the Row/Col grid
+            to avoid picking up gutter spacing. */}
+        <Offcanvas show={showFilters} onHide={() => setShowFilters(false)} placement="start" mountOnEnter>
+            <Offcanvas.Header closeButton />
+            <Offcanvas.Body>
+                <FilterSidebar {...filterProps} />
+            </Offcanvas.Body>
+        </Offcanvas>
+
+        <Row className="g-3 mt-1">
+            <Col md={3} className="d-none d-md-block">
                 <FilterSidebar
                     filterCategory={filterCategory}
                     filterType={filterType}

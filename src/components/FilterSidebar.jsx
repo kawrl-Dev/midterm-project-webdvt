@@ -1,11 +1,19 @@
+import { memo } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { CATEGORIES } from '../constants/categories.js';
 
-function FilterSidebar({ filterCategory, filterType, onCategoryChange, onTypeChange, onReset, hasActiveFilters }) {
+const FilterSidebar = memo(function FilterSidebar({
+  filterCategory,
+  filterType,
+  onCategoryChange,
+  onTypeChange,
+  onReset,
+  hasActiveFilters
+}) {
   return (
     <Card className="p-3 dashboard-header h-100">
       <h5 className="fw-bold mb-3">Filters</h5>
-
+      
       <Form.Group className="mb-3" controlId="filterCategory">
         <Form.Label>Category</Form.Label>
         <Form.Select
@@ -42,6 +50,6 @@ function FilterSidebar({ filterCategory, filterType, onCategoryChange, onTypeCha
       </Button>
     </Card>
   );
-}
+});
 
 export default FilterSidebar;
