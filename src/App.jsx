@@ -8,6 +8,7 @@ import './css/global.css';
 import Dashboard from './pages/Dashboard.jsx';
 import AddTransaction from './pages/AddTransaction.jsx';
 import TransactionDetails from './pages/TransactionDetails.jsx';
+import Summary from './pages/Summary.jsx';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/add-transaction" element={<AddTransaction />} />
               <Route path="/transaction/:id" element={<TransactionDetails />} />
+              <Route path="/summary" element={<Summary />} />
             </Routes>
           </main>
           <WebsiteFooter/>
