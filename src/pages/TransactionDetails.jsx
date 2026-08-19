@@ -102,10 +102,6 @@ function TransactionDetails() {
                 <strong>Amount:</strong> ₱{Number(amount).toFixed(2)}
               </Card.Text>
               <div className="d-flex gap-2">
-                <Button variant="secondary" onClick={() => navigate('/dashboard')}>
-                  <BsArrowLeft className="me-2" />
-                  Back to Dashboard
-                </Button>
                 <Button variant="primary" onClick={handleEditClick}>Edit</Button>
                 <Button variant="danger" onClick={() => setShowDeleteModal(true)}>Delete</Button>
               </div>

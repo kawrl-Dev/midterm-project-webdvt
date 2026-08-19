@@ -1,6 +1,5 @@
 import { Form } from 'react-bootstrap';
-
-const CATEGORIES = ['Food', 'Transportation', 'Utilities', 'Entertainment', 'Health', 'Salary', 'Other'];
+import { CATEGORIES } from '../constants/categories.js';
 
 function TransactionForm({ formData, onChange }) {
   return (
