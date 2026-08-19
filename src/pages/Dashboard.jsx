@@ -2,8 +2,11 @@ import { useMemo, useState } from "react";
 import { Container, Row, Col, Button, Offcanvas } from "react-bootstrap";
 import { useTransactions } from "../hooks/useTransactions.js";
 import { useTransactionFilters } from "../hooks/useTransactionFilters.js";
+import { useResponsiveItemsPerPage } from "../hooks/useResponsiveItemsPerPage.js";
+import { usePagination } from "../hooks/usePagination.js";
 import '../css/Dashboard.css';
 import Separator from "../components/Separator.jsx";
+import PaginationControls from "../components/PaginationControls.jsx";
 import TransactionCard from "../components/TransactionCard.jsx";
 import FilterSidebar from "../components/FilterSidebar.jsx";
 import { CiCirclePlus, CiFilter } from 'react-icons/ci';
@@ -27,6 +30,9 @@ function Dashboard() {
       return matchesCategory && matchesType;
     });
   }, [transactions, filterCategory, filterType]);
+
+  const itemsPerPage = useResponsiveItemsPerPage();const { currentPage, totalPages, paginatedItems, setCurrentPage } =
+    usePagination(filteredTransactions, itemsPerPage);
 
   const filterProps = {
     filterCategory,
@@ -99,12 +105,17 @@ function Dashboard() {
                     ) : (
                         <Container fluid className="w-max mx-auto pb-3 mt-4">
                             <Row xs={1} sm={2} md={2} lg={3} className="g-3">
-                                {filteredTransactions.map((transaction) => (
+                                {paginatedItems.map((transaction) => (
                                     <Col key={transaction.id}>
                                         <TransactionCard transaction={transaction} />
                                     </Col>
                                 ))}
                             </Row>
+                            <PaginationControls
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setCurrentPage}
+                            />
                         </Container>
                     )}
                 </Container>
