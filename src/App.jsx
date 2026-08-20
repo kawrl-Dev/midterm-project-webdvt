@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar.jsx';
 import WebsiteFooter from './components/WebsiteFooter.jsx';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
@@ -16,7 +15,7 @@ export default function App() {
       <BrowserRouter>
         <div className="d-flex flex-column min-vh-100">
           <NavigationBar/>
-          <main className="flex-grow-1" style={{ paddingTop: '80px', paddingBottom: '20px' }}>
+          <main className="flex-grow-1 pt-5 mt-4">
             <Routes>
               <Route index element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />

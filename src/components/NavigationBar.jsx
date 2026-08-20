@@ -8,7 +8,6 @@ import '../css/NavigationBar.css';
 function NavigationBar() {
   return (
     <header>
-      <Container fluid>
         <Navbar expand="lg" fixed="top" bg="bg-tertiary" className="rounded-4 m-2 customNavbar" collapseOnSelect>
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
@@ -36,7 +35,6 @@ function NavigationBar() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-      </Container>
     </header>
   );
 }
