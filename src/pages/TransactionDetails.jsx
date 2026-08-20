@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { Container, Card, Badge, Button, Form, Modal, Alert } from 'react-bootstrap';
+import { Container, Card, Badge, Button, Form, Modal, Alert, Stack } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router';
 import { useTransactions } from '../hooks/useTransactions.js';
 import TransactionForm from '../components/TransactionForm.jsx';
-import { BsArrowLeft } from 'react-icons/bs';
+import '../css/TransactionDetails.css';
+import { IoReturnDownBackOutline } from "react-icons/io5";
+import { MdOutlineEdit } from "react-icons/md";
+import { RiDeleteBinFill } from "react-icons/ri";
 
 function TransactionDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getTransactionById, updateTransaction, deleteTransaction } = useTransactions();
-
   const transaction = getTransactionById(id);
-
   const [isEditing, setIsEditing] = useState(false);
   const [validated, setValidated] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
   const [formData, setFormData] = useState(null);
 
   if (!transaction) {
@@ -64,7 +64,7 @@ function TransactionDetails() {
       setValidated(true);
       return;
     }
-
+    
     updateTransaction(id, {
       description: formData.description,
       amount: Number(formData.amount),
@@ -87,10 +87,10 @@ function TransactionDetails() {
           {isEditing ? (
             <Form noValidate validated={validated} onSubmit={handleSave}>
               <TransactionForm formData={formData} onChange={handleChange} />
-              <div className="d-flex gap-2">
+              <Stack direction="horizontal" gap={2} className="mt-3">
                 <Button type="submit" variant="primary">Save</Button>
                 <Button type="button" variant="secondary" onClick={handleCancel}>Cancel</Button>
-              </div>
+              </Stack>
             </Form>
           ) : (
             <>
@@ -101,10 +101,21 @@ function TransactionDetails() {
                 <strong>Type:</strong> <Badge bg={type === 'income' ? 'success' : 'danger'}>{type}</Badge> <br />
                 <strong>Amount:</strong> ₱{Number(amount).toFixed(2)}
               </Card.Text>
-              <div className="d-flex gap-2">
-                <Button variant="primary" onClick={handleEditClick}>Edit</Button>
-                <Button variant="danger" onClick={() => setShowDeleteModal(true)}>Delete</Button>
-              </div>
+              <Stack direction="vertical" gap={2} className="transactionDetailsBtnGroup mt-3 w-100">
+                <Button variant="primary" onClick={() => navigate('/dashboard')} className="d-flex align-items-center justify-content-center">
+                  <IoReturnDownBackOutline /> 
+                  <span>Back</span>
+                </Button>
+                <Button variant="secondary"  onClick={handleEditClick} className="d-flex align-items-center justify-content-center">
+                  <MdOutlineEdit /> 
+                  <span>Edit</span>
+                </Button>
+                
+                <Button variant="danger" onClick={() => setShowDeleteModal(true)} className="d-flex align-items-center justify-content-center">
+                  <RiDeleteBinFill /> 
+                  <span>Delete</span>
+                </Button>
+              </Stack>
             </>
           )}
         </Card.Body>
