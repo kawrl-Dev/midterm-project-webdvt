@@ -67,7 +67,7 @@ function Dashboard() {
         <Offcanvas show={showFilters} onHide={() => setShowFilters(false)} placement="start" mountOnEnter>
             <Offcanvas.Header closeButton />
             <Offcanvas.Body>
-                <FilterSidebar {...filterProps} />
+                <FilterSidebar {...filterProps} idPrefix="mobile"/>
             </Offcanvas.Body>
         </Offcanvas>
 
@@ -80,6 +80,7 @@ function Dashboard() {
                     onTypeChange={setType}
                     onReset={resetFilters}
                     hasActiveFilters={hasActiveFilters}
+                    idPrefix="desktop"
                 />
             </Col>
 
