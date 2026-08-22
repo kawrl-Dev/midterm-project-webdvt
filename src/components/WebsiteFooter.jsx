@@ -1,6 +1,6 @@
 import Wave from "react-wavify";
-import ThemeToggle from './ThemeToggle.jsx';
-import { useTheme } from '../context/ThemeContext.jsx';
+import ThemeToggle from "./ThemeToggle.jsx";
+import { useTheme } from '../context/useTheme.js';
 
 const waveStyle = {
   position: 'absolute',
