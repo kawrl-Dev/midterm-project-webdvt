@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { ThemeContext } from "./theme-context";
 
-export const ThemeContext = createContext();
 const STORAGE_KEY = 'theme-preference';
 
 // Converts a "#rrggbb" hex color into an "rgba(r, g, b, alpha)" string, used to build the translucent layers for the multilayer wave footer.
