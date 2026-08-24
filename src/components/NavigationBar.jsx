@@ -10,7 +10,7 @@ function NavigationBar() {
     <header className="app-header">
       <div className="nav-backdrop" aria-hidden="true" />
       <Container fluid>
-        <Navbar expand="lg" bg="bg-tertiary" className="rounded-4 m-2 customNavbar" collapseOnSelect>
+        <Navbar expand="lg" className="rounded-4 m-2 customNavbar" collapseOnSelect>
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
               <img
