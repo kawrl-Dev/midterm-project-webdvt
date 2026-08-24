@@ -15,7 +15,7 @@ const hexToRgba = (hex, alpha) => {
 
 // Base accent color per theme, picked to match the site's "coffee vibe" palette instead of a computed contrast color.
 const BASE_WAVE_COLOR = {
-  dark: '#E0E0E0',   // light gray
+  dark: '#BFC0C0',   // silver
   light: '#82665B',  // warm mocha
 };
 
