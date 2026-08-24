@@ -7,8 +7,10 @@ import '../css/NavigationBar.css';
 
 function NavigationBar() {
   return (
-    <header>
-        <Navbar expand="lg" fixed="top" bg="bg-tertiary" className="rounded-4 m-2 customNavbar" collapseOnSelect>
+    <header className="app-header">
+      <div className="nav-backdrop" aria-hidden="true" />
+      <Container fluid>
+        <Navbar expand="lg" bg="bg-tertiary" className="rounded-4 m-2 customNavbar" collapseOnSelect>
           <Container fluid>
             <Navbar.Brand className="d-flex align-items-center">
               <img
@@ -20,7 +22,7 @@ function NavigationBar() {
               />
               <span className="myBrand">Personal Budget Tracker</span>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navigationBar" />
+            <Navbar.Toggle aria-controls="navigationBar"/>
             <Navbar.Collapse id="navigationBar">
               <Nav className="ms-auto gap-3" navbarScroll>
                 <Nav.Link as={Link} to="/dashboard" className="d-flex align-items-center gap-2" eventKey="1">
@@ -35,6 +37,7 @@ function NavigationBar() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+      </Container>
     </header>
   );
 }
