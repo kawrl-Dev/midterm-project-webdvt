@@ -1,3 +1,26 @@
+/* Navbar Icon Styles */
+.navbar-icon-svg {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.navbar-icon-svg polygon {
+  fill: var(--bs-tertiary-bg);
+  stroke: var(--bs-tertiary-color);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+/* Navbar Toggle Icon Styles */
+.navbar-toggle-icon {
+  border: none;
+  padding: none;
+}
+
+/* App Header Styles and Navigation Bar Backdrop Styles */
 .app-header {
   position: fixed;
   top: 0;
@@ -8,26 +31,23 @@
 
 .nav-backdrop {
   position: absolute;
-  top:0;
-  bottom:8px;
-  left:0;
-  right:0;
+  top: 0;
+  bottom: 8px;
+  left: 0;
+  right: 0;
   z-index: 0;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: background-color 0.4s ease;
-}
-
-/* Custom Navbar Backdrop Styles */
-[data-bs-theme="light"] .nav-backdrop {
-  opacity: 0.95;
-}
-
-[data-bs-theme="dark"] .nav-backdrop {
   opacity: 0.95;
 }
 
 /* Custom Navbar Styles */
+.customNavbar {
+  position: relative;
+  z-index: 1;
+}
+
 [data-bs-theme="light"] .customNavbar {
   background-color: var(--bs-tertiary-bg);
   border: 1px solid var(--bs-border-color);
@@ -39,22 +59,9 @@
 }
 
 /* Custom Brand Styles */
-.myBrand{
-    font-size: clamp(0.96rem, 2vw, 2rem);
-    font-weight: bold;
-    margin-left: 10px;
-    transition: color 0.4s ease;
-}
-
-[data-bs-theme="light"] .myBrand {
-    color: var(--bs-secondary-color);
-}
-
-[data-bs-theme="dark"] .myBrand {
-    color: var(--bs-secondary-color);
-}
-
-.customNavbar {
-  position: relative;
-  z-index: 1;
+.myBrand {
+  font-weight: bold;
+  color: var(--bs-secondary-color);
+  transition: color 0.4s ease;
+  font-size: clamp(0.96rem, calc(2vw + 0.5rem), 2rem);
 }
