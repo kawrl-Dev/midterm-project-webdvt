@@ -1,6 +1,6 @@
 # 💸 Personal Budget Tracker 💸
 
-A multi-page **Personal Budget Tracker** built with **React**, **React Router**, and **React-Bootstrap**. Users can log income and expense transactions, categorize them, filter and paginate their history, view spending summaries broken down by category, and switch between light and dark themes — with the theme choice persisted and applied consistently across the entire app via Context.
+A multi-page **Personal Budget Tracker** built with **React**, **React Router**, and **React-Bootstrap**. Users can log income and expense transactions, categorize them, filter and paginate their history, view spending summaries broken down by category, switch between light and dark themes, and personalize the app's brand name — all persisted via `localStorage` and applied consistently across the entire app via Context.
 
 ---
 
@@ -69,23 +69,31 @@ A multi-page **Personal Budget Tracker** built with **React**, **React Router**,
 
 ### Summary Flow
 
-1. Shows an overview of income vs. expenses as a percentage of total cash flow.
-2. Breaks down expenses and income by category, each visualized as a fill-level "jar."
+1. Shows an overview of income vs. expenses as a percentage of total cash flow, visualized as fill-level "jars."
+2. Breaks down expenses and income by category using a segmented (proportional) bar with a color-coded legend for each category.
 3. Includes the light/dark theme toggle in the site footer — the choice applies app-wide, not just on this page.
+
+### Brand Name Personalization
+
+1. The app's name is shown in the navigation bar and browser tab title, defaulting to "My Budget Tracker."
+2. Clicking the edit icon next to the brand name opens a modal where the user can type a custom name (max 25 characters, with a live character counter).
+3. The custom name is persisted to `localStorage` and applied app-wide via `BrandContext`, and can be reset back to the default at any time.
+4. An inline script in `index.html` reads the stored brand name and sets the document title before first paint, avoiding a flash of the default title.
 
 ---
 
 ## Architecture
 
 - **Routing** — `react-router` defines each page above as its own real route with a distinct URL (no conditionally-rendered "fake" pages), plus a redirect from `/` to `/dashboard`.
-- **Theme (Context API)** — `ThemeContext.jsx` manages light/dark mode app-wide via React Context, avoiding prop drilling through every component. The active theme is persisted to `localStorage` and applied via the `data-bs-theme` attribute, with an inline script in `index.html` setting it before first paint to prevent a flash of the wrong theme. The context also derives themed wave accent colors for the animated footer.
+- **Theme (Context API)** — Theme state lives in `context/theme-context.js` (the `createContext` + `useTheme` hook) and is provided by `ThemeContext.jsx`, which manages light/dark mode app-wide, persists the active theme to `localStorage`, applies it via the `data-bs-theme` attribute, and derives themed wave accent colors for the animated footer. An inline script in `index.html` sets the theme before first paint to prevent a flash of the wrong theme.
+- **Brand Name (Context API)** — `context/brand-context.js` (the `createContext` + `useBrand` hook) is provided by `BrandContext.jsx`, which manages the custom app/brand name shown in the navbar and browser tab, persists it to `localStorage`, keeps `document.title` in sync, and enforces a max length with a reset-to-default option.
 - **Custom Hooks**:
   - `useTransactions` — single source of truth for reading/writing transactions to `localStorage`, exposing CRUD helpers (`addTransaction`, `updateTransaction`, `deleteTransaction`, `getTransactionById`) plus memoized `income`/`expense`/`balance` totals.
   - `useTransactionFilters` — manages category/type filter state, persists it to `localStorage`, and exposes a `hasActiveFilters` flag.
   - `usePagination` — generic pagination over any item list, clamping the current page down (never resetting to page 1) when the list shrinks.
   - `useResponsiveItemsPerPage` — adjusts items-per-page to match the Dashboard's responsive card grid breakpoints.
 - **Performance Optimization** — `TransactionCard` and `FilterSidebar` are wrapped in `React.memo` to avoid unnecessary re-renders when unrelated Dashboard state changes; hook-exposed callbacks (`addTransaction`, `updateTransaction`, etc.) are wrapped in `useCallback` so they keep stable references across renders.
-- **Styling** — `react-bootstrap` for layout/components, with custom CSS (`global.css`, `NavigationBar.css`, `Dashboard.css`, `TransactionCard.css`, `Summary.css`, `Jar.css`) layered on top for theme-aware accents, hover effects, and the category "jar" visualizations.
+- **Styling** — `react-bootstrap` for layout/components, with custom CSS (`global.css`, `NavigationBar.css`, `Dashboard.css`, `TransactionCard.css`, `TransactionDetails.css`, `Summary.css`, `SegmentedBar.css`, `Jar.css`) layered on top for theme-aware accents, hover effects, and the category "jar"/segmented-bar visualizations.
 - **PWA-ready** — `vite-plugin-pwa` and `workbox-window` are included as dependencies to support installability and offline caching.
 
 ---
@@ -95,7 +103,7 @@ A multi-page **Personal Budget Tracker** built with **React**, **React Router**,
 ```
 midterm-project-webdevt/
 │
-├── index.html                      Vite entry HTML; sets initial theme before paint to avoid flash.
+├── index.html                      Vite entry HTML; sets initial theme and stored brand name before paint to avoid flashes.
 ├── package.json
 │
 └── src/
@@ -104,19 +112,23 @@ midterm-project-webdevt/
     ├── App.jsx                     Route definitions and top-level layout (nav, footer, routed content).
     │
     ├── components/
-    │   ├── NavigationBar.jsx       Top navigation with links to Dashboard and Summary.
+    │   ├── NavigationBar.jsx       Top navigation with links to Dashboard and Summary; hosts the editable brand name modal.
     │   ├── WebsiteFooter.jsx       Animated multilayer wave footer; hosts the theme toggle.
     │   ├── ThemeToggle.jsx         Sun/moon button that flips light/dark mode via ThemeContext.
     │   ├── TransactionForm.jsx     Shared form fields used by both Add and Edit flows.
     │   ├── TransactionCard.jsx     Memoized card summarizing a single transaction; links to its detail page.
     │   ├── FilterSidebar.jsx       Memoized category/type filter controls (desktop sidebar + mobile off-canvas).
     │   ├── PaginationControls.jsx  Bootstrap pagination bar driven by usePagination.
-    │   ├── Jar.jsx                 Animated fill-level "jar" used on the Summary page.
+    │   ├── Jar.jsx                 Animated fill-level "jar" used for the Summary overview (income vs. expense).
+    │   ├── SegmentedBar.jsx        Proportional segmented bar + legend used for the Summary category breakdown.
     │   └── Separator.jsx           Simple themed horizontal rule.
     │
     ├── context/
-    │   └── ThemeContext.jsx        Theme Context provider; persists theme to localStorage and
-    │                               derives wave accent colors per theme.
+    │   ├── ThemeContext.jsx        Theme Context provider; persists theme to localStorage and
+    │   │                           derives wave accent colors per theme.
+    │   ├── theme-context.js        Theme Context definition + `useTheme` hook (kept separate for Fast Refresh compatibility).
+    │   ├── BrandContext.jsx        Brand name Context provider; persists custom brand name to localStorage and syncs document.title.
+    │   └── brand-context.js        Brand Context definition + `useBrand` hook.
     │
     ├── hooks/
     │   ├── useTransactions.js          CRUD + localStorage persistence for transactions.
@@ -138,7 +150,9 @@ midterm-project-webdevt/
         ├── NavigationBar.css       Theme-aware nav bar styling.
         ├── Dashboard.css           Dashboard header, balance, and button styling.
         ├── TransactionCard.css     Hover/transition styling for transaction cards.
+        ├── TransactionDetails.css  Responsive button-group styling for the detail view.
         ├── Summary.css             Summary page title styling.
+        ├── SegmentedBar.css        Segmented bar and legend styling for category breakdowns.
         └── Jar.css                 Mason-jar visualization styling.
 ```
 
@@ -155,3 +169,4 @@ All originally planned features have been implemented:
 - [x] Running balance calculation on the Dashboard
 - [x] Pagination and responsive items-per-page on the Dashboard
 - [x] Light/dark theme, persisted and applied app-wide
+- [x] Editable, persisted brand/app name shown in the navbar and browser tab
