@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
-import { useTheme } from '../context/ThemeContext.jsx';
+import { useTheme } from '../context/theme-context.js';
  
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();

@@ -16,7 +16,7 @@ function AddTransaction() {
     amount: '',
     date: '',
     category: '',
-    type: 'expense',
+    type: '',
   });
 
   const handleChange = (e) => {

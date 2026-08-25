@@ -1,6 +1,4 @@
 // Separator.jsx
-import React from 'react';
-
 const Separator = ({ color = '#ccc', thickness = '1px', space = '20px' }) => {
   return (
     <hr

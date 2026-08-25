@@ -8,18 +8,16 @@ const FilterSidebar = memo(function FilterSidebar({
   onCategoryChange,
   onTypeChange,
   onReset,
-  hasActiveFilters
+  hasActiveFilters,
+  idPrefix = 'desktop'
 }) {
   return (
     <Card className="p-3 dashboard-header h-100">
       <h5 className="fw-bold mb-3">Filters</h5>
-      
-      <Form.Group className="mb-3" controlId="filterCategory">
+
+      <Form.Group className="mb-3" controlId={`${idPrefix}-filterCategory`}>
         <Form.Label>Category</Form.Label>
-        <Form.Select
-          value={filterCategory}
-          onChange={(e) => onCategoryChange(e.target.value)}
-        >
+        <Form.Select value={filterCategory} onChange={(e) => onCategoryChange(e.target.value)}>
           <option value="">All categories</option>
           {CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>{cat}</option>
@@ -27,25 +25,16 @@ const FilterSidebar = memo(function FilterSidebar({
         </Form.Select>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="filterType">
+      <Form.Group className="mb-3" controlId={`${idPrefix}-filterType`}>
         <Form.Label>Type</Form.Label>
-        <Form.Select
-          value={filterType}
-          onChange={(e) => onTypeChange(e.target.value)}
-        >
+        <Form.Select value={filterType} onChange={(e) => onTypeChange(e.target.value)}>
           <option value="">All types</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </Form.Select>
       </Form.Group>
 
-      <Button
-        variant="outline-secondary"
-        size="sm"
-        onClick={onReset}
-        disabled={!hasActiveFilters}
-        className="w-100"
-      >
+      <Button variant="outline-secondary" size="sm" onClick={onReset} disabled={!hasActiveFilters} className="w-100">
         Clear filters
       </Button>
     </Card>

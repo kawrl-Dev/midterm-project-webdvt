@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useTransactions } from '../hooks/useTransactions.js';
 import { CATEGORIES } from '../constants/categories.js';
 import Jar from '../components/Jar.jsx';
+import SegmentedBar from '../components/SegmentedBar.jsx';
 import Separator from '../components/Separator.jsx';
 import '../css/Summary.css';
 
@@ -19,8 +20,6 @@ function colorFor(category, fallbackIdx) {
 function Summary() {
   const { transactions, income, expense } = useTransactions();
 
-  // Same useMemo pattern as Dashboard's filteredTransactions: only recompute
-  // the category breakdowns when the transaction list actually changes.
   const { expenseByCategory, incomeByCategory } = useMemo(() => {
     const expenseMap = {};
     const incomeMap = {};
@@ -45,58 +44,46 @@ function Summary() {
         color: colorFor(category, idx),
       }));
 
-  const expenseJars = buildJars(expenseByCategory, expense);
-  const incomeJars = buildJars(incomeByCategory, income);
+  const expenseBreakdown = buildJars(expenseByCategory, expense);
+  const incomeBreakdown = buildJars(incomeByCategory, income);
   const hasData = transactions.length > 0;
 
   return (
     <Container fluid className="p-4">
-      <h1 className="fw-bold summary-title">Summary</h1>
+      <h1 className="fw-bold summary-title mb-4">Summary</h1>
 
       {!hasData ? (
         <p className="text-muted text-center pt-4">
           No transactions yet. Add some to see your summary.
         </p>
       ) : (
-        <>
-          <section className="mb-4">
-            <h4 className="fw-bold mb-3">Overview</h4>
-            <div className="jar-row">
-              <Jar label="Income" sublabel="of total flow" percent={incomeOverviewPct} amount={income} color="#4C9F70" />
-              <Jar label="Expenses" sublabel="of total flow" percent={expenseOverviewPct} amount={expense} color="#E07A5F" />
-            </div>
-          </section>
-
-          <Separator color="silver" thickness="2px" space="16px" />
-
-          <section className="mb-4">
-            <h4 className="fw-bold mb-3">Expenses by Category</h4>
-            {expenseJars.length === 0 ? (
-              <p className="text-muted">No expenses recorded.</p>
-            ) : (
-              <div className="jar-row">
-                {expenseJars.map((jar) => (
-                  <Jar key={jar.category} label={jar.category} percent={jar.percent} amount={jar.amount} color={jar.color} />
-                ))}
+        <Row className="g-4">
+          {/* Left column: Overview — stacks on top on mobile via md breakpoint */}
+          <Col md={5}>
+            <section>
+              <h4 className="fw-bold mb-3">Overview</h4>
+              <div className="jar-row justify-content-center">
+                <Jar label="Income" size='lg' sublabel="of total flow" percent={incomeOverviewPct} amount={income} color="#4C9F70" />
+                <Jar label="Expenses" size='lg' sublabel="of total flow" percent={expenseOverviewPct} amount={expense} color="#E07A5F" />
               </div>
-            )}
-          </section>
+            </section>
+          </Col>
 
-          <Separator color="silver" thickness="2px" space="16px" />
+          {/* Right column: category breakdown bars */}
+          <Col md={7}>
+            <section className="mb-4">
+              <h4 className="fw-bold mb-3">Expenses by Category</h4>
+              <SegmentedBar items={expenseBreakdown} emptyMessage="No expenses recorded." />
+            </section>
 
-          <section className="mb-4">
-            <h4 className="fw-bold mb-3">Income by Category</h4>
-            {incomeJars.length === 0 ? (
-              <p className="text-muted">No income recorded.</p>
-            ) : (
-              <div className="jar-row">
-                {incomeJars.map((jar) => (
-                  <Jar key={jar.category} label={jar.category} percent={jar.percent} amount={jar.amount} color={jar.color} />
-                ))}
-              </div>
-            )}
-          </section>
-        </>
+            <Separator color="silver" thickness="2px" space="16px" />
+
+            <section>
+              <h4 className="fw-bold mb-3">Income by Category</h4>
+              <SegmentedBar items={incomeBreakdown} emptyMessage="No income recorded." />
+            </section>
+          </Col>
+        </Row>
       )}
     </Container>
   );
